@@ -5,7 +5,7 @@ const Context = require("../db/strategies/base/contextStrategy");
 
 const context = new Context(new Postgres());
 
-const MOCK_HEROE_CREATE = {
+const HEROE = {
   nome: "Gavigod",
   poder: "Flexas"
 };
@@ -23,8 +23,14 @@ describe("Postgres Strategy", function() {
   });
 
   it("Create", async function() {
-    const result = await context.create(MOCK_HEROE_CREATE);
+    const result = await context.create(HEROE);
     delete result.id;
-    assert.deepEqual(result, MOCK_HEROE_CREATE);
+    assert.deepEqual(result, HEROE);
+  });
+
+  it("List", async function() {
+    const [result] = await context.read({ nome: HEROE.nome });
+    delete result.id;
+    assert.deepEqual(result, HEROE);
   });
 });

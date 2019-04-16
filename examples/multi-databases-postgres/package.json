@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha src/tests/*.test.js",
+    "test:watch": "mocha src/tests/*.test.js -w"
   },
   "keywords": [],
   "author": "Fellipe Botelho",
